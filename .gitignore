@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+app/build/
+/captures
+*.mp4
+video_frames/
+video_frames_dense/
+sisa_kerjaan/
+.externalNativeBuild
+.cxx
+local.properties
