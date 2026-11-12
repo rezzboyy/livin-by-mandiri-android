@@ -133,3 +133,24 @@ Dokumen ini memuat daftar tugas terperinci, alur implementasi, dan pelacakan pro
   - [x] Auto-retract bekerja sempurna setelah 3.2 detik kembali ke normal (`sharpness: 1228`).
 - [x] **7.4 Verifikasi Kesesuaian Video Rekaman**
   - [x] Seluruh aspek, animasi, fisika sentuh, dan visual telah 100% cocok dengan `referensisemuaaspekdananimasidanfitur.mp4`.
+
+---
+
+## Fase 8: Sistem Pembaruan Otomatis (OTA) & Skrip Rilis 1-Klik (`release.ps1`)
+- [x] **8.1 Pembuatan Keystore Rilis Permanen**
+  - [x] Keystore `livin_release.jks` dibuat dengan algoritma RSA 2048-bit, masa berlaku 10.000 hari (hingga tahun 2054).
+  - [x] Konfigurasi `signingConfigs` pada `build.gradle.kts` diselaraskan untuk build `release` dan `debug` (mencegah konflik signature saat in-place OTA update).
+- [x] **8.2 Engine Pengecekan & Unduhan Pembaruan (`GitHubUpdateManager.kt`)**
+  - [x] Client OTA mandiri terintegrasi ke GitHub Releases API (`rezzboyy/livin-by-mandiri-android`).
+  - [x] Pengecekan versi semantik otomatis (`isRemoteVersionNewer`) saat aplikasi dibuka (*cold start*).
+  - [x] Unduhan streaming APK dengan progress bar dan peluncuran instan Android `PackageInstaller` via `FileProvider`.
+  - [x] Izin Android: `INTERNET`, `ACCESS_NETWORK_STATE`, dan `REQUEST_INSTALL_PACKAGES` (Android 8.0+ Unknown Sources).
+- [x] **8.3 Komponen Antarmuka Dialog Pembaruan (`LivinUpdateDialog.kt`)**
+  - [x] Tampilan dialog Jetpack Compose modern beraksen biru royal dan kuning emas Mandiri (`LivinGoldPrimary`).
+  - [x] Badge versi, estimasi ukuran file APK, dan catatan pembaruan (*changelog*).
+  - [x] Indikator progress bar unduhan real-time (0% s/d 100%).
+- [x] **8.4 Skrip Otomasi Rilis 1-Klik (`release.ps1`) & Rilis Perdana GitHub**
+  - [x] Skrip PowerShell `release.ps1` untuk auto-bump versi, kompilasi APK release bertanda tangan, git commit & tag, dan publikasi langsung ke GitHub Releases via GitHub CLI (`gh`).
+  - [x] Inisialisasi Git & pembuatan repositori publik `rezzboyy/livin-by-mandiri-android`.
+  - [x] Publikasi rilis perdana `v1.0.1` (Version Code 2) sukses diunggah ke GitHub Releases.
+
